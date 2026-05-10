@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #000100;
+  --muted: #A1A6B4;
+  --cyan: #94C5CC;
+  --blue: #B4D2E7;
+  --paper: #F8F8F8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+::selection {
+  background: rgba(148, 197, 204, 0.35);
+  color: var(--ink);
+}
+
+@layer components {
+  .page-shell {
+    @apply mx-auto w-full max-w-7xl px-4;
+  }
+
+  .section-card {
+    @apply rounded-[2rem] border border-black/5 bg-white shadow-[0_10px_35px_rgba(0,0,0,0.05)];
+  }
+
+  .soft-panel {
+    @apply rounded-3xl border border-black/5 bg-white/90 shadow-sm backdrop-blur;
+  }
+
+  .tag-pill {
+    @apply inline-flex items-center rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-black/70;
+  }
+
+  .subtle-grid {
+    background-image:
+      linear-gradient(to right, rgba(0, 1, 0, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 1, 0, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
+
+@media (min-width: 640px) {
+  .page-shell {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-shell {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.hero-noise {
+  background:
+    radial-gradient(circle at top right, rgba(180, 210, 231, 0.6), transparent 35%),
+    radial-gradient(circle at left center, rgba(148, 197, 204, 0.45), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.95));
+}
+
+.glass-border {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.bg-campus {
+  background:
+    radial-gradient(circle at top left, rgba(180, 210, 231, 0.4), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(148, 197, 204, 0.35), transparent 28%),
+    #f8f8f8;
+}
+
+.about-marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+.about-track {
+  display: flex;
+  width: max-content;
+  gap: 20px;
+  will-change: transform;
+}
+
+.about-card {
+  flex: 0 0 calc((100vw - 40px) / 1);
+  max-width: 100%;
+}
+
+@media (min-width: 640px) {
+  .about-card {
+    flex: 0 0 calc((100vw - 80px - 20px) / 2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-card {
+    flex: 0 0 calc((100vw - 120px - 40px) / 3);
+    max-width: 470px;
+  }
+}
+
+.belt-viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.belt-track {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: max-content;
+  flex-wrap: nowrap;
+  will-change: transform;
+}
+
+.belt-card {
+  flex: 0 0 auto;
+}
+
+@keyframes beltLoopLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 12px));
+  }
+}
+
+@keyframes beltLoopRight {
+  from {
+    transform: translateX(calc(-50% - 12px));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.belt-left {
+  animation: beltLoopLeft 7s linear infinite;
+}
+
+.belt-right {
+  animation: beltLoopRight 7s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .belt-left,
+  .belt-right {
+    animation: none;
+  }
+}
+@font-face {
+  font-family: "Qarvic";
+  src: url("/fonts/Qarvic.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-qarvic {
+  font-family: "Qarvic", sans-serif;
+}
+@font-face {
+  font-family: "Etna Sans Serif";
+  src: url("/fonts/EtnaSansSerif.otf") format("opentype");
+  font-weight: 400 900;
+  font-style: Normal;
+}
+
+.font-etna {
+  font-family: "Etna Sans Serif", sans-serif;
+}
