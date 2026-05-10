@@ -140,7 +140,7 @@ export default function AboutPage() {
       <div className="absolute left-1/2 top-0 flex h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[radial-gradient(circle_at_30%_30%,#D4F1F5_0%,#A8D6DD_70%)] shadow-[0_18px_35px_rgba(69,120,135,0.22)] ring-1 ring-[#6E9DA7]/40 sm:h-[170px] sm:w-[170px]">
         <div className="flex h-[130px] w-[130px] items-center justify-center rounded-full border border-[#5E8E99]/60 bg-[#BDE1E6]/70 sm:h-[146px] sm:w-[146px]">
           <Image
-            src="/about/mission.png"
+            src="/about/Mission.png"
             alt="Mission icon"
             width={150}
             height={150}
@@ -168,7 +168,7 @@ export default function AboutPage() {
       <div className="absolute left-1/2 top-0 flex h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[radial-gradient(circle_at_30%_30%,#D4F1F5_0%,#A8D6DD_70%)] shadow-[0_18px_35px_rgba(69,120,135,0.22)] ring-1 ring-[#6E9DA7]/40 sm:h-[170px] sm:w-[170px]">
         <div className="flex h-[130px] w-[130px] items-center justify-center rounded-full border border-[#5E8E99]/60 bg-[#BDE1E6]/70 sm:h-[146px] sm:w-[146px]">
           <Image
-            src="/about/vision.png"
+            src="/about/Vision.png"
             alt="Vision icon"
             width={100}
             height={100}
