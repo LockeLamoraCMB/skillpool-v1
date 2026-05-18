@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { use, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
@@ -646,6 +647,15 @@ export default function ProfilePage({ params }) {
                   {tab}
                 </button>
               ))}
+
+              {!isOwner ? (
+                <Link
+                  href={`/messages/${profile.id}`}
+                  className="min-w-[132px] rounded-[14px] bg-[#12212B] px-5 py-3 text-center text-[15px] font-semibold text-white shadow-[0_10px_18px_rgba(18,33,43,0.16)]"
+                >
+                  Message
+                </Link>
+              ) : null}
             </div>
           </div>
         </section>

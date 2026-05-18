@@ -7,6 +7,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { siteLinks } from "@/lib/siteData";
 import { isAllowedStudentEmail } from "@/lib/auth/student";
+import NotificationBell from "@/components/notifications/NotificationBell";
 
 function isActive(pathname, href) {
   if (href === "/") {
@@ -214,7 +215,10 @@ export default function Navbar() {
             {profileLoading ? (
               <div className="h-12 w-[180px] animate-pulse rounded-2xl bg-black/5" />
             ) : profile ? (
-              <div className="relative" ref={profileRef}>
+              <div className="flex items-center gap-3">
+                <NotificationBell currentUserId={profile.id} />
+
+                <div className="relative" ref={profileRef}>
                 <button
                   type="button"
                   onClick={() => setProfileOpen((prev) => !prev)}
@@ -282,6 +286,14 @@ export default function Navbar() {
                       </Link>
 
                       <Link
+                        href="/notifications"
+                        onClick={() => setProfileOpen(false)}
+                        className="rounded-xl px-3 py-3 text-sm font-semibold text-[#12212B] transition hover:bg-[#F8FBFC]"
+                      >
+                        Notifications
+                      </Link>
+
+                      <Link
                         href="/forum"
                         onClick={() => setProfileOpen(false)}
                         className="rounded-xl px-3 py-3 text-sm font-semibold text-[#12212B] transition hover:bg-[#F8FBFC]"
@@ -299,6 +311,7 @@ export default function Navbar() {
                     </div>
                   </div>
                 ) : null}
+                </div>
               </div>
             ) : (
               <Link
@@ -364,6 +377,14 @@ export default function Navbar() {
                         {profile.role || "Student"}
                       </span>
                     </div>
+                  </Link>
+
+                  <Link
+                    href="/notifications"
+                    onClick={() => setIsOpen(false)}
+                    className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm font-semibold text-[#12212B]"
+                  >
+                    Notifications
                   </Link>
 
                   <button

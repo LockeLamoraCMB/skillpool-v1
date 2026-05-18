@@ -2,9 +2,11 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import sanitizeHtml from "sanitize-html";
 import { createClient } from "@/lib/supabase/server";
+import { fetchComments } from "@/lib/comments";
 import { formatForumDate } from "@/lib/forum";
 import AttachmentList from "@/components/forum/AttachmentList";
 import ExchangeActions from "@/components/forum/ExchangeActions";
+import ForumComments from "@/components/forum/ForumComments";
 import StarRatingDisplay from "@/components/forum/StarRatingDisplay";
 
 function sanitizeForumHtml(html = "") {
@@ -70,6 +72,8 @@ export default async function ForumPostDetailPage({ params }) {
   if (attachmentsError) {
     throw new Error(attachmentsError.message);
   }
+
+  const comments = await fetchComments(supabase, post.id);
 
   const { data: exchanges, error: exchangesError } = await supabase
     .from("skill_exchanges")
@@ -243,6 +247,15 @@ export default async function ForumPostDetailPage({ params }) {
                   size="lg"
                 />
               </div>
+
+              {user.id !== post.author_id ? (
+                <Link
+                  href={`/messages/${post.author_id}`}
+                  className="mt-5 inline-flex w-full justify-center rounded-2xl bg-[#12212B] px-5 py-3 text-sm font-semibold text-white"
+                >
+                  Message {post.author_username}
+                </Link>
+              ) : null}
             </section>
 
             <ExchangeActions
@@ -254,6 +267,12 @@ export default async function ForumPostDetailPage({ params }) {
             />
           </aside>
         </div>
+
+        <ForumComments
+          postId={post.id}
+          currentUserId={user.id}
+          initialComments={comments}
+        />
 
         <section className="rounded-[28px] border border-[#D7E1E7] bg-white p-6 shadow-[0_12px_35px_rgba(23,43,58,0.06)] sm:p-8">
           <h2 className="text-2xl font-black text-[#12212B]">Recent reviews</h2>
